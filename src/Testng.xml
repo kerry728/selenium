@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suite name="Suite" parallel="false">
+  <test name="Test">
+    <parameter name="username" value="kerryhong728" />
+	<parameter name="pwd" value = "qh728226" />
+    
+    <classes>
+      <class name="com.learn.basic.LoginAndSearch" >
+      	<methods>
+      		<include name="loginCheck" />
+      		<include name="testSearch" />
+      		<include name="testSearchAndOrder" />
+      	</methods>
+      </class>
+      <class name="com.learn.basic.BasicFunctionsImplement">
+      	<methods>
+      		<exclude name="mouseOver" />
+      		<include name="wantFeedback" />
+      	</methods>
+      </class>
+    </classes>
+  </test> 
+</suite>
