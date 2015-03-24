@@ -4,12 +4,19 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.Reader;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
+import org.openqa.selenium.Platform;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriver.Navigation;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.ie.InternetExplorerDriver;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeClass;
@@ -32,8 +39,22 @@ public class TestController {
 	}
 	
 	@BeforeClass
-	public static void beforeClass() {
-		driver = new FirefoxDriver();
+	public static void beforeClass() throws MalformedURLException {
+//		DesiredCapabilities capability = DesiredCapabilities.firefox();
+//		capability.setBrowserName("firefox");
+//		capability.setPlatform(Platform.LINUX);
+//		driver = new RemoteWebDriver(new URL("http://192.168.199.1:5555/wd/hub"),capability);
+		//start firefox
+	//	driver = new FirefoxDriver();
+	
+		
+		//start IE
+//		System.setProperty("webdriver.ie.driver", "C:\\Selenium\\IEDriver\\IEDriverServer.exe");
+//		driver = new InternetExplorerDriver();
+		
+		//start Chrome
+		System.setProperty("webdriver.chrome.driver","C:\\Selenium\\ChromeDriver\\chromedriver.exe");
+		driver = new ChromeDriver();
 		driver.manage().window().maximize();
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		nav = driver.navigate();
@@ -43,12 +64,12 @@ public class TestController {
 	
 	@AfterClass
 	public static void afterClass() {	
-		driver.close();
+		//driver.close();
 	}
 	
 	@AfterSuite
 	public static void afterSuite() {
-		driver.quit();
+		//driver.quit();
 	}
 	
 	

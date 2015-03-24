@@ -30,6 +30,7 @@ public class BasicFunctionsImplement extends TestController{
 		js.executeScript("arguments[0].click();", feedback);
 		CommonActions.locateNewWinHandler(TestController.driver.getWindowHandle(),TestController.driver);
 		Assert.assertEquals("京东首页调查问卷", TestController.driver.getTitle());
+
 		//System.out.println(TestController.driver.findElement(By.id("question2367")).getText());
 		WebElement checkRadio1 = TestController.driver.findElement(By.id("answer95425X91X23673"));
 		checkRadio1.click();
@@ -55,7 +56,8 @@ public class BasicFunctionsImplement extends TestController{
 		Assert.assertEquals(TestController.driver.findElement(By.cssSelector("#question2369 .errormandatory")).getText(), "本题必答.");
 		
 		//take screenshot
-		CommonActions.takeScreenshot();
+		CommonActions.takeScreenshot("feedbackScr");
 		
 	}
+	
 }

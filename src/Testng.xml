@@ -7,17 +7,23 @@
     <classes>
       <class name="com.learn.basic.LoginAndSearch" >
       	<methods>
-      		<include name="loginCheck" />
-      		<include name="testSearch" />
-      		<include name="testSearchAndOrder" />
+      		<exclude name="loginCheck" />
+      		<exclude name="testSearch" />
+      		<exclude name="testSearchAndOrder" />
       	</methods>
       </class>
       <class name="com.learn.basic.BasicFunctionsImplement">
       	<methods>
       		<exclude name="mouseOver" />
-      		<include name="wantFeedback" />
+      		<exclude name="wantFeedback" />
+      		<exclude name="myJD" />
       	</methods>
-      </class>
+      </class> 
+        <class name="com.learn.basic.DataProviderDemo">
+      	<methods>
+      		<include name="loginCheck" />
+      	</methods>
+      </class> 
     </classes>
   </test> 
 </suite>
