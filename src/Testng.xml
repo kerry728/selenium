@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <suite name="Suite" parallel="false">
-  <test name="Test">
-    <parameter name="username" value="kerryhong728" />
-	<parameter name="pwd" value = "qh728226" />
-    
+  <test name="firefox">
+    <parameter name="username" value="" />
+	<parameter name="pwd" value = "" />
+    <parameter name="browser" value = "firefox" />
     <classes>
       <class name="com.learn.basic.LoginAndSearch" >
       	<methods>
-      		<exclude name="loginCheck" />
+      		<include name="loginCheck" />
       		<exclude name="testSearch" />
       		<exclude name="testSearchAndOrder" />
       	</methods>
@@ -21,9 +21,48 @@
       </class> 
         <class name="com.learn.basic.DataProviderDemo">
       	<methods>
-      		<include name="loginCheck" />
+      		<exclude name="loginCheck" />
       	</methods>
+      </class> 
+        <class name="com.learn.basic.ReporterLogs">
+        <methods>
+        	<exclude name="reportFunction" />
+        </methods>
       </class> 
     </classes>
   </test> 
+<!--   <test name="IE">
+    <parameter name="username" value="" />
+	<parameter name="pwd" value = "" />
+	<parameter name="browser" value = "Internet Explore" />
+    
+    <classes>
+      <class name="com.learn.basic.LoginAndSearch" >
+      	<methods>
+      		<include name="loginCheck" />
+      		<exclude name="testSearch" />
+      		<exclude name="testSearchAndOrder" />
+      	</methods>
+      </class>
+      <class name="com.learn.basic.BasicFunctionsImplement">
+      	<methods>
+      		<exclude name="mouseOver" />
+      		<exclude name="wantFeedback" />
+      		<exclude name="myJD" />
+      	</methods>
+      </class> 
+        <class name="com.learn.basic.DataProviderDemo">
+      	<methods>
+      		<exclude name="loginCheck" />
+      	</methods>
+      </class> 
+        <class name="com.learn.basic.ReporterLogs">
+        <methods>
+        	<exclude name="reportFunction" />
+        </methods>
+      </class> 
+    </classes>
+  </test>
+  -->  
 </suite>
+

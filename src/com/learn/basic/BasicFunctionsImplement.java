@@ -1,6 +1,7 @@
 package com.learn.basic;
 
 import java.io.IOException;
+import java.util.List;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -32,9 +33,23 @@ public class BasicFunctionsImplement extends TestController{
 		Assert.assertEquals("京东首页调查问卷", TestController.driver.getTitle());
 
 		//System.out.println(TestController.driver.findElement(By.id("question2367")).getText());
-		WebElement checkRadio1 = TestController.driver.findElement(By.id("answer95425X91X23673"));
-		checkRadio1.click();
-		Assert.assertTrue(checkRadio1.isSelected());
+		List<WebElement> radioBoxes = driver.findElements(By.cssSelector("#question2367 .radio-list"));
+		
+		int radioBoxesSize = radioBoxes.size();
+		System.out.println(radioBoxesSize);
+		
+		for(int i = 0; i < radioBoxesSize; i++) {
+			
+			String value = radioBoxes.get(i).getText();
+			System.out.println(value);
+			if(p.getProperty("radioBox2").equals(value)) {
+				radioBoxes.get(i).click();
+				break;
+			}
+		}
+//		//WebElement checkRadio1 = TestController.driver.findElement(By.id("answer95425X91X23673"));
+//		checkRadio1.click();
+//		Assert.assertTrue(checkRadio1.isSelected());
 		
 		//second question
 		//select the radios for the second question

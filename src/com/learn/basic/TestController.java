@@ -21,6 +21,8 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeSuite;
+import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Parameters;
 
 public class TestController {
 
@@ -38,6 +40,24 @@ public class TestController {
 		reader.close();
 	}
 	
+	@Parameters({"browser"})
+	@BeforeTest
+	public static void beforeTest(String browser) {
+		
+		if(browser.equals("firefox")) {
+			driver = new FirefoxDriver();
+		} else if(browser.equals("Internet Explore")) {
+			System.setProperty("webdriver.ie.driver", "C:\\Selenium\\IEDriver\\IEDriverServer.exe");
+			driver = new InternetExplorerDriver();
+		}
+		
+		driver.manage().window().maximize();
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		nav = driver.navigate();
+		nav.to(p.getProperty("URL"));
+	}
+	
+	
 	@BeforeClass
 	public static void beforeClass() throws MalformedURLException {
 //		DesiredCapabilities capability = DesiredCapabilities.firefox();
@@ -45,7 +65,7 @@ public class TestController {
 //		capability.setPlatform(Platform.LINUX);
 //		driver = new RemoteWebDriver(new URL("http://192.168.199.1:5555/wd/hub"),capability);
 		//start firefox
-	//	driver = new FirefoxDriver();
+//		driver = new FirefoxDriver();
 	
 		
 		//start IE
@@ -53,12 +73,12 @@ public class TestController {
 //		driver = new InternetExplorerDriver();
 		
 		//start Chrome
-		System.setProperty("webdriver.chrome.driver","C:\\Selenium\\ChromeDriver\\chromedriver.exe");
-		driver = new ChromeDriver();
-		driver.manage().window().maximize();
-		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-		nav = driver.navigate();
-		nav.to(p.getProperty("URL"));
+//		System.setProperty("webdriver.chrome.driver","C:\\Selenium\\ChromeDriver\\chromedriver.exe");
+//		driver = new ChromeDriver();
+//		driver.manage().window().maximize();
+//		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+//		nav = driver.navigate();
+//		nav.to(p.getProperty("URL"));
 		
 	}
 	

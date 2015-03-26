@@ -1,27 +1,19 @@
 package com.learn.basic;
 
 import java.io.IOException;
-import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebDriver.Navigation;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
 import org.testng.Assert;
-import org.testng.annotations.DataProvider;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 public class LoginAndSearch extends TestController{
 
 	//this function is to check the login if success
-	@DataProvider(name = "LoginCheck")
-	public static Object[][] searchDataProvider() {
-		return new Object[][] {{"testdemo1","jteksjtk"},{"自动化测试","手工测试"}};
-	}
-	//@Parameters({"username","pwd"})
-	@Test(dataProvider = "LoginCheck")
+	@Parameters({"username","pwd"})
+	@Test
 	public void loginCheck(String username,String password) throws IOException {
 		
 		driver.findElement(By.partialLinkText("请登录")).click();
@@ -31,7 +23,18 @@ public class LoginAndSearch extends TestController{
 		driver.findElement(By.id("loginsubmit")).click();
 		
 		String actualloginname = driver.findElement(By.className("link-user")).getText();
+		//System.out.println(driver.getPageSource());
 		Assert.assertEquals(actualloginname, username);
+		
+		Actions action = new Actions(driver);
+		action.moveToElement(driver.findElement(By.partialLinkText("我的订单"))).perform();
+		action.contextClick().perform();
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}	
 	
 	//this function is to check the result if the search item is not exist in the  system
